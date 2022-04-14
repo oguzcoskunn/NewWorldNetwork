@@ -1,11 +1,10 @@
 AllPrivateKeys.swift
 *.plist
-*.xcode
 *.xcworkspace
 *.xcodeproj
-OneSignalNotificationServiceExtension
+*.entitlements
 Podfile
 Podfile.lock
 Pods
-*.entitlements
 Supporting Files
+Preview Content
