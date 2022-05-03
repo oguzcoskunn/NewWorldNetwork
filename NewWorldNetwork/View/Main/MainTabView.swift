@@ -19,7 +19,6 @@ struct MainTabView: View {
     @State var showChat = false
     @State var user: User?
     @State var isShowingNewTweetView = false
-    //ss
     
     
     var body: some View {
