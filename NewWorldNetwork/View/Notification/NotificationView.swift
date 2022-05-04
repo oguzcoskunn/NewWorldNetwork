@@ -39,7 +39,7 @@ struct NotificationView: View {
                 }
                 .padding(.vertical, 1)
                 .background(Color("NWbackground").scaledToFill())
-                .navigationBarTitleDisplayMode(.inline)
+//                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarTitle("")
 
                 if pageInfo == "social" {

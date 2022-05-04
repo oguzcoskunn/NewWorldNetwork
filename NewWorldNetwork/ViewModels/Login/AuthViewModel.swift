@@ -19,6 +19,8 @@ class AuthViewModel: ObservableObject {
     @Published var supportUser: User?
     @Published var blockedUsers = [User]()
     
+    @Published var currentTab = 0
+    
     static let shared = AuthViewModel()
     
     init() {

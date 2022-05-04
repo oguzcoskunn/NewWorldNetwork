@@ -44,7 +44,7 @@ struct NavigationBarView: View {
         .padding(.vertical, 1)
         .padding(.horizontal, 15)
         .frame(width: UIScreen.main.bounds.width, height: 40)
-        .padding(.top, 40)
+        .padding(.top, 50)
     }
 }
 

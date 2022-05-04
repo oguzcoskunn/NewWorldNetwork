@@ -28,19 +28,19 @@ struct QuestionAnswerSearchView: View {
                 VStack {
                     HStack(alignment: .center) {
                         VStack(spacing: 30) {
-                            Text("Game:")
+                            Text("Title:")
                                 .font(.system(size: 15, weight: .semibold))
                                 .foregroundColor(Color("NWorange"))
-                            Text("Title:")
+                            Text("Game:")
                                 .font(.system(size: 15, weight: .semibold))
                                 .foregroundColor(Color("NWorange"))
                         }
                         
                         VStack(spacing: 20) {
-                            QuestionAnswerSearchBar(placerholder: "Search For Game...", text: $gameSearchText)
+                            QuestionAnswerSearchBar(placerholder: "Search For Title...", text: $titleSearchText)
                             .frame(width: UIScreen.main.bounds.width * 0.7, height: 25)
                             
-                            QuestionAnswerSearchBar(placerholder: "Search For Title...", text: $titleSearchText)
+                            QuestionAnswerSearchBar(placerholder: "Search For Game...", text: $gameSearchText)
                             .frame(width: UIScreen.main.bounds.width * 0.7, height: 25)
                         }
                         
@@ -87,10 +87,10 @@ struct QuestionAnswerSearchView: View {
 
                 }
                 .background(Color("NWbackground").scaledToFill())
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarTitle("")
+//                .navigationBarTitleDisplayMode(.inline)
                 QuestionAnswerTabView(isShowingNewQuestion: $isShowingNewQuestion, isShowingNewMessageView: $isShowingNewMessageView, selectedIndex: $selectedIndex)
             }
+            .navigationBarTitle("")
             .navigationBarHidden(true)
             .background(Color("NWtoolbar"))
             .edgesIgnoringSafeArea(.all)

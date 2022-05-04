@@ -117,7 +117,7 @@ struct ChatView: View {
                     self.value = 0
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("")
             .navigationBarHidden(true)
             .edgesIgnoringSafeArea(.all)

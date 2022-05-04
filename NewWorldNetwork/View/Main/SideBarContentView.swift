@@ -135,51 +135,30 @@ struct SideBarContentView: View {
                     .padding(.bottom, 20)
                 
                 VStack(alignment: .leading, spacing: 25) {
-                    if selectedIndex > 4 {
-                        Button {
-                            showSideBar.toggle()
-                            selectedIndex = 0
-                        } label: {
-                            HStack(spacing: 15) {
-                                Image(systemName: "network")
-                                Text("Social")
-                            }
+                    
+                    Button {
+                        self.showSideBar.toggle()
+                        self.selectedIndex = 0
+                        self.authViewModel.currentTab = 0
+                    } label: {
+                        HStack(spacing: 15) {
+                            Image(systemName: "network")
+                            Text("Social")
                         }
-                    } else {
-                        Button {
-                            showSideBar.toggle()
-                            selectedIndex = 0
-                        } label: {
-                            HStack(spacing: 15) {
-                                Image(systemName: "network")
-                                Text("Social")
-                            }
-                            .foregroundColor(Color("NWorange"))
-                        }
+                        .foregroundColor(selectedIndex <= 4 ? Color("NWorange") : Color.white)
                     }
                     
-
-                    if selectedIndex < 5 {
-                        Button {
-                            showSideBar.toggle()
-                            selectedIndex = 5
-                        } label: {
-                            HStack(spacing: 15) {
-                                Image(systemName: "person.fill.questionmark")
-                                Text("Question & Answer")
-                            }
+                    
+                    Button {
+                        self.showSideBar.toggle()
+                        self.selectedIndex = 5
+                        self.authViewModel.currentTab = 1
+                    } label: {
+                        HStack(spacing: 15) {
+                            Image(systemName: "person.fill.questionmark")
+                            Text("Question & Answer")
                         }
-                    } else {
-                        Button {
-                            showSideBar.toggle()
-                            selectedIndex = 5
-                        } label: {
-                            HStack(spacing: 15) {
-                                Image(systemName: "person.fill.questionmark")
-                                Text("Question & Answer")
-                            }
-                            .foregroundColor(Color("NWorange"))
-                        }
+                        .foregroundColor(selectedIndex >= 5 ? Color("NWorange") : Color.white)
                     }
                     
                     Divider()

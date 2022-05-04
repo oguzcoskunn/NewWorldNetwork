@@ -61,11 +61,11 @@ struct QuestionAnswerView: View {
                 }
                 .padding(.vertical, 1)
                 .background(Color("NWbackground").scaledToFill())
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarTitle("")
+//                .navigationBarTitleDisplayMode(.inline)
 
                 QuestionAnswerTabView(isShowingNewQuestion: $isShowingNewQuestion, isShowingNewMessageView: $isShowingNewMessageView, selectedIndex: $selectedIndex)
             }
+            .navigationBarTitle("")
             .navigationBarHidden(true)
             .background(Color("NWtoolbar"))
             .edgesIgnoringSafeArea(.all)

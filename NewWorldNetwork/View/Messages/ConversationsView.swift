@@ -62,7 +62,7 @@ struct ConversationsView: View {
                     .padding(.horizontal, 14)
                 })
                 .background(Color("NWbackground").scaledToFill())
-                .navigationBarTitleDisplayMode(.inline)
+//                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarTitle("")
 
                 if pageInfo == "social" {

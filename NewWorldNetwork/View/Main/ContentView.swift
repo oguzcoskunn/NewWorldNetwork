@@ -44,10 +44,18 @@ struct ContentView: View {
                                     isActive: $goProfile,
                                     label: {})
                             }
-                            MainTabView(selectedIndex: $selectedIndex, showSidebar: $showSideBar)
-                                .navigationBarHidden(true)
-                                .navigationTitle("")
-                                .phoneOnlyStackNavigationView()
+                            if self.viewModel.currentTab == 0 {
+                                MainTabView(selectedIndex: $selectedIndex, showSidebar: $showSideBar)
+                                    .navigationBarHidden(true)
+                                    .navigationTitle("")
+                                    .phoneOnlyStackNavigationView()
+                            } else {
+                                SecondTabView(selectedIndex: $selectedIndex, showSidebar: $showSideBar)
+                                    .navigationBarHidden(true)
+                                    .navigationTitle("")
+                                    .phoneOnlyStackNavigationView()
+                            }
+                            
                         }
                         
                     }

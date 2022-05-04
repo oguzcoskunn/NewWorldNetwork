@@ -33,41 +33,42 @@ struct SearchView: View {
                 VStack {
                     NavigationBarView(showSidebar: $showSidebar, title: "Search")
                     ScrollView {
-                            SearchBar(text: $searchText)
+                        SearchBar(text: $searchText)
                             .padding(.horizontal)
                             .padding(.top, 10)
+                        
+                        LazyVStack(alignment: .leading) {
+                            if (!searchText.isEmpty && viewModel.filteredUsers(searchText).isEmpty) || (viewModel.users.isEmpty)  {
+                                Text("No Result...")
+                                    .foregroundColor(Color("NWgray"))
+                                    .padding(.top, 10)
+                            }
                             
-                            VStack(alignment: .leading) {
-                                if (!searchText.isEmpty && viewModel.filteredUsers(searchText).isEmpty) || (viewModel.users.isEmpty)  {
-                                    Text("No Result...")
-                                        .foregroundColor(Color("NWgray"))
-                                        .padding(.top, 10)
-                                }
-                                
-                                ForEach(searchText.isEmpty ? viewModel.users : viewModel.filteredUsers(searchText)) { user in
-                                    if user.id != "mCJlIwtHQHRb6zPIBcfLTWX9vdY2" {
-                                        HStack { Spacer() }
-                                        Button {
-                                            self.user = user
-                                            self.isProfileViewActive.toggle()
-                                             } label: {
-                                                 UserCell(user: user)
-                                             }
+                            ForEach(searchText.isEmpty ? viewModel.users : viewModel.filteredUsers(searchText)) { user in
+                                if user.id != "mCJlIwtHQHRb6zPIBcfLTWX9vdY2" {
+                                    HStack { Spacer() }
+                                    Button {
+                                        self.user = user
+                                        self.isProfileViewActive.toggle()
+                                    } label: {
+                                        UserCell(user: user)
                                     }
                                 }
                             }
-                            .padding(.leading)
-                            .padding(.bottom, 10)
                         }
-                        .padding(.vertical, 1)
+                        .padding(.leading)
+                        .padding(.bottom, 10)
+                    }
+                    .padding(.vertical, 1)
                     .background(Color("NWbackground").scaledToFill())
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationBarTitle("")
                     TabBarView(isShowingNewTweetView: $isShowingNewTweetView, isShowingNewMessageView: $isShowingNewMessageView, selectedIndex: $selectedIndex)
                 }
-                .background(Color("NWtoolbar"))
+                
+            }
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .background(Color("NWtoolbar"))
             .edgesIgnoringSafeArea(.all)
-            }.navigationBarHidden(true)
         }
         
     }

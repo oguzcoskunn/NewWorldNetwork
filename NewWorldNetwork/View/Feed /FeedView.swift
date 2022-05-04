@@ -98,59 +98,55 @@ struct FeedView: View {
                     .padding(.vertical, 1)
                     .padding(.horizontal, 15)
                     .frame(width: UIScreen.main.bounds.width, height: 40)
-                    .padding(.top, 40)
-                    
-                    ZStack(alignment: .bottomTrailing, content: {
-                        ScrollView {
-                            VStack {
-                                PullToRefreshView {
-                                    self.viewModel.loadingNow = true
-                                    DispatchQueue.main.async() {
-                                        self.viewModel.fetchTweets(onlyFollowing: onlyFollowing)
-                                    }
-                                }
-                                ForEach(Array(viewModel.tweets.enumerated()), id: \.offset) { tweetIndex, tweet in
-                                    ForEach(viewModel.users) { user in
-                                        if user.id == tweet.uid {
-                                            LazyVStack(alignment: .center) {
-                                                TweetBlockView(tweet: tweet, user: user, tweetUploaded: $newTweetUploaded)
-                                                    .id(tweet.id)
-                                                Divider()
-                                                let tweetIndex = tweetIndex + 1
-                                                let adPerCount = 4
-                                                if tweetIndex % adPerCount == 0 {
-                                                    BannerVC(unitNumber: ((tweetIndex/adPerCount)-1))
-                                                        .frame(width: UIScreen.main.bounds.width * 0.8, height: 60, alignment: .center)
-                                                    Divider()
-                                                }
-                                                
-                                            }
-                                        }
-                                    }
-                                }
-                                .padding(.vertical, 3)
-                            }
-                            .padding(.top, 10)
-                            .padding(.trailing, 10)
-                        }
-                        .onChange(of: newTweetUploaded) { value in
-                            if value == true {
+                    .padding(.top, 50)
+                    ScrollView {
+                        VStack {
+                            PullToRefreshView {
                                 self.viewModel.loadingNow = true
                                 DispatchQueue.main.async() {
                                     self.viewModel.fetchTweets(onlyFollowing: onlyFollowing)
                                 }
-                                newTweetUploaded = false
                             }
-                            
+                            ForEach(Array(viewModel.tweets.enumerated()), id: \.offset) { tweetIndex, tweet in
+                                ForEach(viewModel.users) { user in
+                                    if user.id == tweet.uid {
+                                        LazyVStack(alignment: .center) {
+                                            TweetBlockView(tweet: tweet, user: user, tweetUploaded: $newTweetUploaded)
+                                                .id(tweet.id)
+                                            Divider()
+                                            let tweetIndex = tweetIndex + 1
+                                            let adPerCount = 4
+                                            if tweetIndex % adPerCount == 0 {
+                                                BannerVC(unitNumber: ((tweetIndex/adPerCount)-1))
+                                                    .frame(width: UIScreen.main.bounds.width * 0.8, height: 60, alignment: .center)
+                                                Divider()
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(.vertical, 3)
                         }
-                        .padding(.vertical, 1)
-                        .background(Color("NWbackground").scaledToFill())
+                        .padding(.top, 10)
+                        .padding(.trailing, 10)
+                    }
+                    .onChange(of: newTweetUploaded) { value in
+                        if value == true {
+                            self.viewModel.loadingNow = true
+                            DispatchQueue.main.async() {
+                                self.viewModel.fetchTweets(onlyFollowing: onlyFollowing)
+                            }
+                            newTweetUploaded = false
+                        }
                         
-                    })
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationBarTitle("")
+                    }
+                    .padding(.vertical, 1)
+                    .background(Color("NWbackground").scaledToFill())
+
                     TabBarView(isShowingNewTweetView: $isShowingNewTweetView, isShowingNewMessageView: $isShowingNewMessageView, selectedIndex: $selectedIndex)
                 }
+                .navigationBarTitle("")
                 .navigationBarHidden(true)
                 .background(Color("NWtoolbar"))
                 .edgesIgnoringSafeArea(.all)
